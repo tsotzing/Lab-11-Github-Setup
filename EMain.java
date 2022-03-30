@@ -3,41 +3,33 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class EMain {
-    private JFrame frame;
-    private JPanel fieldsPanel;
-    private JPanel buttonPane;
-    private Jlabel label;
-    private Jlabel label2;
-    private JButton encrypt;
-    private JButton decrypt;
 
-    public EMain {
         public static void main (String[]args){
             // create and set up the window.
-            frame = new JFrame("Encrypt Cipher");
-            fieldsPanel = new JPanel();
-            buttonPane = new JPanel();
+            JFrame frame = new JFrame("Encrypt Cipher");
+            JPanel fieldsPanel = new JPanel();
+            JPanel buttonPane = new JPanel();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             fieldsPanel.setLayout(new BoxLayout(fieldsPanel, BoxLayout.PAGE_AXIS));
             buttonPane.setLayout(new FlowLayout());
 
             // label setup
-            label = new JLabel("Filename");
+            JLabel label = new JLabel("Filename");
             frame.getContentPane().add(label);
             JTextField filename = new JTextField();
             filename.setPreferredSize(new Dimension(250, 40));
 
-            label2 = new JLabel("Key");
+            JLabel label2 = new JLabel("Key");
             frame.getContentPane().add(label2);
             JTextField key = new JTextField();
             key.setPreferredSize(new Dimension(250, 40));
 
             // button setup
-            encrypt = new JButton("Encrypt");
+            JButton encrypt = new JButton("Encrypt");
             encrypt.addActionListener(new ButtonListener());
             frame.getContentPane().add(encrypt);
 
-            decrypt = new JButton("Decrypt");
+            JButton decrypt = new JButton("Decrypt");
             decrypt.addActionListener(new ButtonListener());
             frame.getContentPane().add(decrypt);
 
@@ -60,5 +52,5 @@ public class EMain {
             }
         }
     }
-}
+
 
