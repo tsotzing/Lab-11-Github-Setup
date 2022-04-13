@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class Encrypter {
 
-    public void encrypt(File cipherText, int shiftKey) throws FileNotFoundException {
+    public void encrypt(File cipherText, int shift) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
         String cipher = text.read(cipherText);
@@ -12,7 +12,7 @@ public class Encrypter {
         String message = "";
         for (int i = 0; i < cipher.length(); i++) {
             int pos = alpha.indexOf(cipher.charAt(i));
-            int val = (shiftKey + pos) % 26;
+            int val = (shift + pos) % 26;
             char rep = alpha.charAt(val);
             message += rep;
             Encrypter.write(message);
@@ -20,7 +20,7 @@ public class Encrypter {
 
     }
 
-    public void decrypt(File cipherText, int shiftKey) throws FileNotFoundException {
+    public void decrypt(File cipherText, int shift) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
         String cipher = text.read(cipherText);
@@ -28,7 +28,7 @@ public class Encrypter {
         String message = "";
         for (int i = 0; i < cipher.length(); i++) {
             int pos = alpha.indexOf(cipher.charAt(i));
-            int val = (pos - shiftKey) % 26;
+            int val = (pos - shift) % 26;
             if (val < 0) {
                 val = alpha.length() + val;
             }

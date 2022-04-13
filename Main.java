@@ -59,19 +59,19 @@ public class Main {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == encrypt) {
                 File cipherText = new File(filename.getText());
-                int shiftKey = Integer.parseInt(key.getText());
+                int shift = Integer.parseInt(key.getText());
                 Encrypter ec = new Encrypter();
                 try {
-                    ec.encrypt(cipherText,shiftKey);
+                    ec.encrypt(cipherText,shift);
                 } catch (FileNotFoundException ex1) {
                     System.out.println("File not found! Sorry");
                 }
             } else {
                 File cipherText = new File(filename.getText());
-                int shiftKey = Integer.parseInt(key.getText());
+                int shift = Integer.parseInt(key.getText());
                 Encrypter dc = new Encrypter();
                 try {
-                    dc.decrypt(cipherText,shiftKey);
+                    dc.decrypt(cipherText,shift);
                 } catch (FileNotFoundException ex2) {
                     System.out.println("File not found! Sorry");
                 }
