@@ -1,11 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Encrypter {
-
+    private final String alpha = "abcdefghijklmnopqrstuvwxyz";
     //encrypts the contents of the file
+
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
-        String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
         String cipher = text.read(cipherText);
         cipher = cipher.toLowerCase();
@@ -15,13 +16,14 @@ public class Encrypter {
             int val = (shift + pos) % 26;
             char rep = alpha.charAt(val);
             message += rep;
-            text.write(message);
+            text.write(cipherText,message);
+            }
+
         }
 
-    }
+
     //decrypts the contents of the file
     public void decrypt(File cipherText, int shift) throws FileNotFoundException {
-        String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
         String cipher = text.read(cipherText);
         cipher = cipher.toLowerCase() ;
@@ -34,7 +36,7 @@ public class Encrypter {
             }
             char rep = alpha.charAt(val);
             message += rep;
-            text.write(message);
+            text.write(cipherText,message);
         }
 
     }

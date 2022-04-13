@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main {
+    private static JButton encrypt, decrypt;
+    private static JTextField filename, key;
+
     //sets up the interface
     public static void main(String[] args) {
         // create and set up the window.
@@ -18,16 +21,16 @@ public class Main {
         // label setup
         JLabel label = new JLabel("Filename");
         frame.getContentPane().add(label);
-        JTextField filename = new JTextField();
+        filename = new JTextField();
         filename.setPreferredSize(new Dimension(250, 40));
 
         JLabel label2 = new JLabel("Key");
         frame.getContentPane().add(label2);
-        JTextField key = new JTextField();
+        key = new JTextField();
         key.setPreferredSize(new Dimension(250, 40));
 
         // button setup
-        JButton encrypt = new JButton("Encrypt");
+        encrypt = new JButton("Encrypt");
         encrypt.addActionListener(new ButtonListener());
         frame.getContentPane().add(encrypt);
 
@@ -55,6 +58,7 @@ public class Main {
 
     //determines which process to do based on the button pressed
     static class ButtonListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == encrypt) {
@@ -63,16 +67,16 @@ public class Main {
                 Encrypter ec = new Encrypter();
                 try {
                     ec.encrypt(cipherText,shift);
-                } catch (FileNotFoundException ex1) {
+                } catch (FileNotFoundException exec) {
                     System.out.println("File not found! Sorry");
                 }
-            } else {
+            }else{
                 File cipherText = new File(filename.getText());
                 int shift = Integer.parseInt(key.getText());
                 Encrypter dc = new Encrypter();
                 try {
                     dc.decrypt(cipherText,shift);
-                } catch (FileNotFoundException ex2) {
+                } catch (FileNotFoundException exdc) {
                     System.out.println("File not found! Sorry");
                 }
             }

@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Reader {
@@ -16,7 +18,15 @@ public class Reader {
 
 
     //puts the ciphertext into a new file
-    public void write(String message) {
+    public void write(File cipherText, String message){
+        try{
+            FileWriter writer = new FileWriter(cipherText);
+            writer.write(message);
+            writer.close();
+        }catch (IOException i){
+            System.out.println("Sorry! try again");
+        }
+
 
     }
 }
