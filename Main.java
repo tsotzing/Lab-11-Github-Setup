@@ -46,6 +46,17 @@ public class Main {
             frame.setVisible(true);
         }
 
+
+        public void getFile(){
+
+        }
+
+
+        public void getKey(){
+
+        }
+
+
         static class ButtonListener implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
