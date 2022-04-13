@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
 
@@ -56,13 +58,23 @@ public class Main {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == encrypt) {
+                File cipherText = new File(filename.getText());
                 int shiftKey = Integer.parseInt(key.getText());
                 Encrypter ec = new Encrypter();
-                ec.encrypt(shiftKey);
+                try {
+                    ec.encrypt(cipherText,shiftKey);
+                } catch (FileNotFoundException ex1) {
+                    System.out.println("File not found! Sorry");
+                }
             } else {
+                File cipherText = new File(filename.getText());
                 int shiftKey = Integer.parseInt(key.getText());
                 Encrypter dc = new Encrypter();
-                dc.decrypt(shiftKey);
+                try {
+                    dc.decrypt(cipherText,shiftKey);
+                } catch (FileNotFoundException ex2) {
+                    System.out.println("File not found! Sorry");
+                }
             }
         }
     }

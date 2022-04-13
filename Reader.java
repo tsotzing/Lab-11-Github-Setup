@@ -1,12 +1,15 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Reader {
-
-
-    public void read() {
-
-
+    public String read(File ciphertext) throws FileNotFoundException {
+        Scanner input = new Scanner(ciphertext);
+        String word = "";
+        while (input.hasNext()) {
+            word = input.next();
+        }
+        return word;
     }
 }
 

@@ -1,31 +1,39 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Locale;
+
 public class Encrypter {
 
-    public String encrypt(String cipherText, int shiftKey) {
+    public String encrypt(File cipherText, int shiftKey) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
-        cipherText = cipherText.toLowerCase();
+        Reader text = new Reader();
+        String cipher = text.read(cipherText);
+        cipher = cipher.toLowerCase();
         String message = "";
-        for (int i = 0; i < cipherText.length(); i++) {
-            int charPosition = alpha.indexOf(cipherText.charAt(i));
-            int keyVal = (shiftKey + charPosition) % 26;
-            char replaceVal = alpha.charAt(keyVal);
-            message += replaceVal;
+        for (int i = 0; i < cipher.length(); i++) {
+            int pos = alpha.indexOf(cipher.charAt(i));
+            int val = (shiftKey + pos) % 26;
+            char rep = alpha.charAt(val);
+            message += rep;
         }
         return message;
     }
 
 
-    public String decrypt(String cipherText, int shiftKey) {
+    public String decrypt(File cipherText, int shiftKey) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
-        cipherText = cipherText.toLowerCase();
+        Reader text = new Reader();
+        String cipher = text.read(cipherText);
+        cipher = cipher.toLowerCase() ;
         String message = "";
-        for (int i = 0; i < cipherText.length(); i++) {
-            int charPosition = alpha.indexOf(cipherText.charAt(i));
-            int keyVal = (charPosition - shiftKey) % 26;
-            if (keyVal < 0) {
-                keyVal = alpha.length() + keyVal;
+        for (int i = 0; i < cipher.length(); i++) {
+            int pos = alpha.indexOf(cipher.charAt(i));
+            int val = (pos - shiftKey) % 26;
+            if (val < 0) {
+                val = alpha.length() + val;
             }
-            char replaceVal = alpha.charAt(keyVal);
-            message += replaceVal;
+            char rep = alpha.charAt(val);
+            message += rep;
         }
         return message;
     }
