@@ -1,20 +1,20 @@
 public class Encrypter {
 
-    public static String encrypt(String cipherText, int shiftKey) {
+    public String encrypt(String cipherText, int shiftKey) {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         cipherText = cipherText.toLowerCase();
         String message = "";
-        for (int i = 0; i < message.length(); i++) {
-            int charPosition = alpha.indexOf(message.charAt(i));
+        for (int i = 0; i < cipherText.length(); i++) {
+            int charPosition = alpha.indexOf(cipherText.charAt(i));
             int keyVal = (shiftKey + charPosition) % 26;
             char replaceVal = alpha.charAt(keyVal);
-            cipherText += replaceVal;
+            message += replaceVal;
         }
-        return cipherText;
+        return message;
     }
 
 
-    public static String decrypt(String cipherText, int shiftKey) {
+    public String decrypt(String cipherText, int shiftKey) {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         cipherText = cipherText.toLowerCase();
         String message = "";
@@ -25,9 +25,9 @@ public class Encrypter {
                 keyVal = alpha.length() + keyVal;
             }
             char replaceVal = alpha.charAt(keyVal);
-            cipherText += replaceVal;
+            message += replaceVal;
         }
-        return cipherText;
+        return message;
     }
 }
 
