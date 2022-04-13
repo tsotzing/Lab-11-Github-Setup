@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main {
-
+    //sets up the interface
     public static void main(String[] args) {
         // create and set up the window.
         JFrame frame = new JFrame("Encrypt Cipher");
@@ -53,7 +53,7 @@ public class Main {
 
     }
 
-
+    //determines which process to do based on the button pressed
     static class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

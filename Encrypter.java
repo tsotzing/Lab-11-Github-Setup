@@ -1,9 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Locale;
 
 public class Encrypter {
 
+    //encrypts the contents of the file
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
@@ -15,11 +15,11 @@ public class Encrypter {
             int val = (shift + pos) % 26;
             char rep = alpha.charAt(val);
             message += rep;
-            Encrypter.write(message);
+            text.write(message);
         }
 
     }
-
+    //decrypts the contents of the file
     public void decrypt(File cipherText, int shift) throws FileNotFoundException {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         Reader text = new Reader();
@@ -34,13 +34,8 @@ public class Encrypter {
             }
             char rep = alpha.charAt(val);
             message += rep;
-            Encrypter.write(message);
+            text.write(message);
         }
-
-    }
-
-
-    public static void write(String message) {
 
     }
 }
