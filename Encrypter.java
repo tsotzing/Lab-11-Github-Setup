@@ -1,11 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+
 
 public class Encrypter {
     private final String alpha = "abcdefghijklmnopqrstuvwxyz";
-    //encrypts the contents of the file
 
+    //encrypts the contents of the file
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
         Reader text = new Reader();
         String cipher = text.read(cipherText);

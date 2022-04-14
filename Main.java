@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main {
-    private static JButton encrypt, decrypt;
+    private static JButton encrypt;
     private static JTextField filename, key;
 
     //sets up the interface
