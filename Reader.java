@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Reader {
 
-    // reads the file, transferring it to a screen
+    // reads the file, transferring it to a String
     public String read(File ciphertext) throws FileNotFoundException {
         Scanner input = new Scanner(ciphertext);
         String word = "";

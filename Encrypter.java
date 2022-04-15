@@ -21,24 +21,25 @@ public class Encrypter {
 
         }
 
-
     //decrypts the contents of the file
     public void decrypt(File cipherText, int shift) throws FileNotFoundException {
         Reader text = new Reader();
         String cipher = text.read(cipherText);
-        cipher = cipher.toLowerCase() ;
+        cipher = cipher.toLowerCase();
         String message = "";
-        for (int i = 0; i < cipher.length(); i++) {
-            int pos = alpha.indexOf(cipher.charAt(i));
-            int val = (pos - shift) % 26;
-            if (val < 0) {
-                val = alpha.length() + val;
+        for (int ii = 0; ii < cipher.length(); ii++) {
+            int charPosition = alpha.indexOf(cipher.charAt(ii));
+            int keyVal = (charPosition - shift) % 26;
+            if (keyVal < 0) {
+                keyVal = alpha.length() + keyVal;
             }
-            char rep = alpha.charAt(val);
+            char rep = alpha.charAt(keyVal);
             message += rep;
             text.write(cipherText,message);
         }
 
     }
-}
+
+    }
+
 
