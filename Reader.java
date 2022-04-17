@@ -1,19 +1,29 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Reader {
 
     // reads the file, transferring it to a String
-    public String read(File ciphertext) throws FileNotFoundException {
-        Scanner input = new Scanner(ciphertext);
-        String word = "";
-        while (input.hasNext()) {
-            word = input.next();
+    public String read(File ciphertext) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(ciphertext));
+        String everything = "";
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
+            }
+            everything = sb.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            br.close();
         }
-        return word;
+        System.out.println(everything);
+        return everything ;
     }
 
 

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Encrypter {
@@ -8,7 +9,12 @@ public class Encrypter {
     //encrypts the contents of the file
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
         Reader text = new Reader();
-        String cipher = text.read(cipherText);
+        String cipher = " ";
+        try {
+            cipher = text.read(cipherText);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cipher = cipher.toLowerCase();
         String message = "";
         for (int i = 0; i < cipher.length(); i++) {
@@ -16,30 +22,39 @@ public class Encrypter {
             int val = (shift + pos) % 26;
             char rep = alpha.charAt(val);
             message += rep;
-            text.write(cipherText,message);
+            text.write(cipherText, message);
             }
 
         }
+
 
     //decrypts the contents of the file
     public void decrypt(File cipherText, int shift) throws FileNotFoundException {
         Reader text = new Reader();
-        String cipher = text.read(cipherText);
+        String cipher = " ";
+        try {
+            cipher = text.read(cipherText);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cipher = cipher.toLowerCase();
         String message = "";
-        for (int ii = 0; ii < cipher.length(); ii++) {
-            int charPosition = alpha.indexOf(cipher.charAt(ii));
-            int keyVal = (charPosition - shift) % 26;
-            if (keyVal < 0) {
-                keyVal = alpha.length() + keyVal;
+        for (int i = 0; i < cipher.length(); i++) {
+            int pos = alpha.indexOf(cipher.charAt(i));
+            int val = (pos - shift) % 26;
+            if (val < 0) {
+                val = alpha.length() + val;
             }
-            char rep = alpha.charAt(keyVal);
+            char rep = alpha.charAt(val);
             message += rep;
-            text.write(cipherText,message);
+            text.write(cipherText, message);
+            }
+
         }
 
     }
 
-    }
+
+
 
 
