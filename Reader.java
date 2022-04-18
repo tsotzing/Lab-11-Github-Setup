@@ -1,12 +1,11 @@
 import java.io.*;
-import java.util.Scanner;
 
 public class Reader {
 
     // reads the file, transferring it to a String
     public String read(File ciphertext) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(ciphertext));
-        String everything = "";
+        String word = "";
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -16,14 +15,13 @@ public class Reader {
                 sb.append(System.lineSeparator());
                 line = br.readLine();
             }
-            everything = sb.toString();
+            word  = sb.toString();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             br.close();
         }
-        System.out.println(everything);
-        return everything ;
+        return word ;
     }
 
 

@@ -4,55 +4,78 @@ import java.io.IOException;
 
 
 public class Encrypter {
-    private final String alpha = "abcdefghijklmnopqrstuvwxyz";
+    private char alphabet;
+    private String message,cipher;
+    private Reader text;
+
 
     //encrypts the contents of the file
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
-        Reader text = new Reader();
-        String cipher = " ";
+        text = new Reader();
+        cipher = " ";
+        message = " ";
         try {
             cipher = text.read(cipherText);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cipher = cipher.toLowerCase();
-        String message = "";
-        for (int i = 0; i < cipher.length(); i++) {
-            int pos = alpha.indexOf(cipher.charAt(i));
-            int val = (shift + pos) % 26;
-            char rep = alpha.charAt(val);
-            message += rep;
-            text.write(cipherText, message);
-            }
 
+        for (int i = 0; i < cipher.length(); i++) {
+            alphabet = cipher.charAt(i);
+            if (alphabet >= 'a' && alphabet <= 'z') {
+                alphabet = (char) (alphabet + shift);
+                if (alphabet > 'z') {
+                    alphabet = (char) (alphabet + 'a' - 'z' - 1);
+                }
+                message = message + alphabet;
+            }else if(alphabet >= 'A' && alphabet <= 'Z') {
+                alphabet = (char) (alphabet + shift);
+                if(alphabet > 'Z') {
+                    alphabet = (char) (alphabet+'A'-'Z'-1);
+                }
+                message = message + alphabet;
+            }else{
+                message = message + alphabet;
+            }
         }
+        text.write(cipherText, message);
+    }
 
 
     //decrypts the contents of the file
     public void decrypt(File cipherText, int shift) throws FileNotFoundException {
-        Reader text = new Reader();
-        String cipher = " ";
+        text = new Reader();
+        cipher = " ";
+        message = "";
         try {
             cipher = text.read(cipherText);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cipher = cipher.toLowerCase();
-        String message = "";
+
         for (int i = 0; i < cipher.length(); i++) {
-            int pos = alpha.indexOf(cipher.charAt(i));
-            int val = (pos - shift) % 26;
-            if (val < 0) {
-                val = alpha.length() + val;
+            alphabet = cipher.charAt(i);
+            if (alphabet >= 'a' && alphabet <= 'z') {
+                alphabet = (char) (alphabet - shift);
+                if (alphabet < 'a') {
+                    alphabet = (char) (alphabet - 'a' + 'z' + 1);
+                }
+                message = message + alphabet;
+            }else if(alphabet >= 'A' && alphabet <= 'Z'){
+                alphabet = (char) (alphabet - shift);
+                if (alphabet < 'A') {
+                    alphabet = (char) (alphabet-'A'+'Z'+1);
+                }
+                message = message + alphabet;
+            }else{
+                message = message + alphabet;
             }
-            char rep = alpha.charAt(val);
-            message += rep;
-            text.write(cipherText, message);
-            }
-
         }
-
+        text.write(cipherText, message);
     }
+}
+
+
 
 
 
