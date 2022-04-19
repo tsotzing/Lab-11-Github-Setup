@@ -1,31 +1,36 @@
 import java.io.*;
 
 public class Reader {
+    private String word;
+    private StringBuilder build;
+    private BufferedReader buff;
 
-    // reads the file, transferring it to a String
+    public Reader(){
+        this.word = "";
+        this.build = new StringBuilder();
+    }
+
+    // reads the file into a String
     public String read(File ciphertext) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(ciphertext));
-        String word = "";
+        buff = new BufferedReader(new FileReader(ciphertext));
+        word = " ";
         try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
+            String line = buff.readLine();
             while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
+                build.append(line);
+                build.append(System.lineSeparator());
+                line = buff.readLine();
             }
-            word  = sb.toString();
+            word  = build.toString();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            br.close();
         }
+        buff.close();
         return word ;
     }
 
 
-    //puts the ciphertext into a new file
+    //writes the ciphertext back into the  file
     public void write(File cipherText, String message){
         try{
             FileWriter writer = new FileWriter(cipherText);

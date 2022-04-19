@@ -10,7 +10,7 @@ public class Main {
 
     //sets up the interface
     public static void main(String[] args) {
-        // create and set up the window.
+        // creates and sets up the window.
         JFrame frame = new JFrame("Encrypt Cipher");
         JPanel fieldsPanel = new JPanel();
         JPanel buttonPane = new JPanel();
@@ -56,7 +56,7 @@ public class Main {
 
     }
 
-    //determines which process to do based on the button pressed
+    //determines which process to do based on the button is chosen
     static class ButtonListener implements ActionListener {
 
         @Override

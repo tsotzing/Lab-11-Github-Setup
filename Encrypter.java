@@ -9,11 +9,14 @@ public class Encrypter {
     private Reader text;
 
 
+    public Encrypter() {
+        this.message = "";
+        this.cipher = " ";
+        this.text = new Reader();
+
+    }
     //encrypts the contents of the file
     public void encrypt(File cipherText, int shift) throws FileNotFoundException {
-        text = new Reader();
-        cipher = " ";
-        message = " ";
         try {
             cipher = text.read(cipherText);
         } catch (IOException e) {
